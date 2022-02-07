@@ -1,0 +1,330 @@
+<GlassCheckerWindow>:
+    id: glass_checker
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: glass_checker.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/glass2.jpg'
+        Label:
+            text: 'Glass Checker Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 20
+        BoxLayout:
+            padding: glass_checker.space_x+50, 300, glass_checker.space_x, 30
+            Label:
+                text: 
+                    '''[b]Follow the instructions given below:[/b]\n
+                    1. Wear your glasses\n
+                    2. Stand 1 meter away from the monitor\n
+                    3. Keep your head straight\n
+                    4. Try to read the lowest clearly visible\n    image using the microphone'''
+                markup: True
+                font_size: '25'
+                color: 0,0,0,1
+        BoxLayout:
+            padding: glass_checker.space_x, 230, glass_checker.space_x, 50
+            Button:
+                id: back
+                text: 'Back'
+                background_color: (0,.3,.3,1)
+                font_size: '20'
+                on_press:
+                    root.manager.transition.direction= "right"
+                    root.manager.current = 'select'
+            Button:
+                id: start
+                text: 'Start Test'
+                background_color: (0,.3,.3,1)
+                font_size: '20'
+                on_press: root.manager.current = 'gc_images'
+
+<ImagesWindow>
+    id: gc_snellen_chart
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: gc_snellen_chart.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/glass2.jpg'
+        Label:
+            text: 'Glass Checker Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 1
+        padding: gc_snellen_chart.space_x+30, 50
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 1
+            padding: gc_snellen_chart.space_x-300, 50
+            Label:
+                text: "[b][color=#063d3f]Images[/color][/b]"
+                markup: True
+                font_size: '30'
+                halign: 'center'
+                size_hint_y: None
+                height: 80
+            Label:
+                text: 
+                    'Identify the images and read it out using the microphone'
+                markup: True
+                font_size: '20'
+                halign: 'center'
+                color: 0,0,0,1
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (600,150)
+                    pos: (300,300)
+                    source: './static/images/images.png'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: audio_test
+                text: ''
+                markup: True
+                font_size: '20'
+                color: 0,0.3,0.4,1
+                bold: True
+                halign: 'center'
+            BoxLayout:
+                Button:
+                    id: speak
+                    text: 'Speak'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.recording()
+                    on_release: root.validate_speech()
+            BoxLayout:
+                Button:
+                    id: back
+                    text: 'Back'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press:
+                        root.empty_text()
+                        root.manager.transition.direction= "right"
+                        root.manager.current = 'glass'
+                Button:
+                    id: next
+                    text: 'Next'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.next_screen()
+
+<AlphabetsWindow>
+    id: gc_random_e_chart
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: gc_random_e_chart.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/glass2.jpg'
+        Label:
+            text: 'Glass Checker Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 2
+        padding: gc_random_e_chart.space_x+30, 50
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+            padding: gc_random_e_chart.space_x-300, 50
+            Label:
+                text: "[b][color=#063d3f]Alphabets[/color][/b]"
+                markup: True
+                font_size: '30'
+                halign: 'center'
+                size_hint_y: None
+                height: 80
+            Label:
+                text: 
+                    'Identify the letters and read it out using the microphone'
+                markup: True
+                font_size: '20'
+                halign: 'center'
+                color: 0,0,0,1
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (400,100)
+                    pos: (400,300)
+                    source: './static/images/alphabets.png'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: audio_test
+                text: ''
+                markup: True
+                font_size: '20'
+                color: 0,0.3,0.4,1
+                bold: True
+                halign: 'center'
+            BoxLayout:
+                Button:
+                    id: speak
+                    text: 'Speak'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.recording()
+                    on_release: root.validate_speech()
+            BoxLayout:
+                Button:
+                    id: back
+                    text: 'Back'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press:
+                        root.empty_text()
+                        root.manager.transition.direction= "right"
+                        root.manager.current = 'gc_images'
+                Button:
+                    id: next
+                    text: 'Next'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.next_screen()
+
+<NumbersWindow>
+    id: gc_landolt_c_chart
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: gc_landolt_c_chart.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/glass2.jpg'
+        Label:
+            text: 'Glass Checker Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 1
+        padding: gc_landolt_c_chart.space_x+30, 50
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+            padding: gc_landolt_c_chart.space_x-300, 50
+            Label:
+                text: "[b][color=#063d3f]Numbers[/color][/b]"
+                markup: True
+                font_size: '30'
+                halign: 'center'
+                size_hint_y: None
+                height: 80
+            Label:
+                text: 
+                    'Identify the numbers and read it out using the microphone'
+                markup: True
+                font_size: '20'
+                halign: 'center'
+                color: 0,0,0,1
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (400,100)
+                    pos: (400,300)
+                    source: './static/images/numbers.png'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: audio_test
+                text: ''
+                markup: True
+                font_size: '20'
+                color: 0,0.3,0.4,1
+                bold: True
+                halign: 'center'
+            BoxLayout:
+                Button:
+                    id: speak
+                    text: 'Speak'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.recording()
+                    on_release: root.validate_speech()
+            BoxLayout:
+                Button:
+                    id: back
+                    text: 'Back'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press:
+                        root.empty_text()
+                        root.manager.transition.direction= "right"
+                        root.manager.current = 'gc_letters'
+                Button:
+                    id: next
+                    text: 'Next'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.next_screen()

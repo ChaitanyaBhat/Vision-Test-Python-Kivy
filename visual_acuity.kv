@@ -1,0 +1,368 @@
+<VisualAcuityWindow>:
+    id: visual_acuity
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: visual_acuity.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/visualAcuity.jpeg'
+        Label:
+            text: 'Visual Acuity Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 20
+        BoxLayout:
+            padding: visual_acuity.space_x+50, 300, visual_acuity.space_x, 30
+            Label:
+                text: 
+                    '''[b]Follow the instructions given below:[/b]\n
+                    1. Remove your glasses\n
+                    2. Stand 1 meter away from the monitor\n
+                    3. Keep your head straight\n
+                    4. Try to read the lowest clearly visible\n    image using the microphone'''
+                markup: True
+                font_size: '25'
+                color: 0,0,0,1
+        BoxLayout:
+            padding: visual_acuity.space_x, 230, visual_acuity.space_x, 50
+            Button:
+                id: back
+                text: 'Back'
+                background_color: (0,.3,.3,1)
+                font_size: '20'
+                on_press:
+                    root.manager.transition.direction= "right"
+                    root.manager.current = 'select'
+            Button:
+                id: start
+                text: 'Start Test'
+                background_color: (0,.3,.3,1)
+                font_size: '20'
+                on_press: root.manager.current = 'snellen'
+
+<SnellenChartWindow>
+    id: snellen_chart
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: snellen_chart.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/visualAcuity.jpeg'
+        Label:
+            text: 'Visual Acuity Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 1
+        padding: snellen_chart.space_x+30, 50, snellen_chart.space_x+30, 10
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 1
+            padding: snellen_chart.space_x-300, 50
+            Label:
+                text: "[b][color=#063d3f]Snellen chart[/color][/b]"
+                markup: True
+                font_size: '30'
+                halign: 'center'
+                size_hint_y: None
+                height: 50
+            Label:
+                text: 
+                    '''Type the line number in the below [b]text box[/b]
+                    Identify the letters in the choosen line and read it out using microphone
+                    Example: "[b]R, A, P, X, S[/b]"'''
+                markup: True
+                font_size: '20'
+                halign: 'center'
+                color: 0,0,0,1
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (350,280)
+                    pos: (405,200)
+                    source: './static/images/snellen_chart.png'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: audio_test
+                text: ''
+                markup: True
+                font_size: '20'
+                color: 0,0.3,0.4,1
+                bold: True
+                halign: 'center'
+            BoxLayout:           
+                padding:0, 20, 0, 0
+                TextInput:
+                    id: line_num
+                    multiline: False
+                    input_filter: 'int'
+                    hint_text: 'Enter line number'
+                    font_size: 20
+                    bold: True
+                    halign: 'center'
+            BoxLayout:
+                Button:
+                    id: speak
+                    text: 'Speak'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.recording()
+                    on_release: root.validate_speech()
+            BoxLayout:
+                Button:
+                    id: back
+                    text: 'Back'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press:
+                        root.empty_text()
+                        root.manager.transition.direction= "right"
+                        root.manager.current = 'acuity'
+                Button:
+                    id: next
+                    text: 'Next'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.next_screen()
+
+                        
+<RandomEWindow>
+    id: random_e_chart
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: random_e_chart.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/visualAcuity.jpeg'
+        Label:
+            text: 'Visual Acuity Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 2
+        padding: random_e_chart.space_x+30, 50, random_e_chart.space_x+30, 10
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+            padding: random_e_chart.space_x-300, 50
+            Label:
+                text: "[b][color=#063d3f]Random E chart[/color][/b]"
+                markup: True
+                font_size: '30'
+                halign: 'center'
+                size_hint_y: None
+                height: 50
+            Label:
+                text: 
+                    '''Type the line number in the below [b]text box[/b]. Identify which way
+                    the open sides of [b]E[/b] are facing in the choosen line and read it out using microphone
+                    Example: "[b]up, down, left, up, right[/b]"'''
+                markup: True
+                font_size: '20'
+                halign: 'center'
+                color: 0,0,0,1
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (350,280)
+                    pos: (405,200)
+                    source: './static/images/random_e_chart.png'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: audio_test
+                text: ''
+                markup: True
+                font_size: '20'
+                color: 0,0.3,0.4,1
+                bold: True
+                halign: 'center'
+            BoxLayout: 
+                padding:0, 20, 0, 0
+                TextInput:
+                    id: line_num
+                    multiline: False
+                    input_filter: 'int'
+                    hint_text: 'Enter line number'
+                    font_size: 20
+                    bold: True
+                    halign: 'center'
+            BoxLayout:
+                Button:
+                    id: speak
+                    text: 'Speak'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.recording()
+                    on_release: root.validate_speech()
+            BoxLayout:
+                Button:
+                    id: back
+                    text: 'Back'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press:
+                        root.empty_text()
+                        root.manager.transition.direction= "right"
+                        root.manager.current = 'snellen'
+                Button:
+                    id: next
+                    text: 'Next'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.next_screen()
+
+                        
+<LandoltCWindow>
+    id: landolt_c_chart
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: landolt_c_chart.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/visualAcuity.jpeg'
+        Label:
+            text: 'Visual Acuity Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 1
+        padding: landolt_c_chart.space_x+30, 50, landolt_c_chart.space_x+30, 10
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+            padding: landolt_c_chart.space_x-300, 50
+            Label:
+                text: "[b][color=#063d3f]Landolt C chart[/color][/b]"
+                markup: True
+                font_size: '30'
+                halign: 'center'
+                size_hint_y: None
+                height: 50
+            Label:
+                text: 
+                    '''Type the line number in the below [b]text box[/b]. Identify which way 
+                    the open sides of [b]C[/b] are facing in the choosen line and read it out using microphone
+                    Example: "[b]up, left, down, right[/b]"'''
+                markup: True
+                font_size: '20'
+                halign: 'center'
+                color: 0,0,0,1
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (330,280)
+                    pos: (410,200)
+                    source: './static/images/landolt_c_chart.png'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: audio_test
+                text: ''
+                markup: True
+                font_size: '20'
+                color: 0,0.3,0.4,1
+                bold: True
+                halign: 'center'
+            BoxLayout:
+                padding:0, 20, 0, 0
+                TextInput:
+                    id: line_num
+                    multiline: False
+                    input_filter: 'int'
+                    hint_text: 'Enter line number'
+                    font_size: 20
+                    bold: True
+                    halign: 'center'
+            BoxLayout:
+                Button:
+                    id: speak
+                    text: 'Speak'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.recording()
+                    on_release: root.validate_speech()
+            BoxLayout:
+                Button:
+                    id: back
+                    text: 'Back'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press:
+                        root.empty_text()
+                        root.manager.transition.direction= "right"
+                        root.manager.current = 'random_e'
+                Button:
+                    id: next
+                    text: 'Next'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.next_screen()

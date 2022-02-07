@@ -1,0 +1,336 @@
+<AstigmatismWindow>:
+    id: astigmatism
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: astigmatism.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/astigmatism4.jpg'
+        Label:
+            text: 'Astigmatism Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 20
+        BoxLayout:
+            padding: astigmatism.space_x+50, 300, astigmatism.space_x, 30
+            Label:
+                text: 
+                    '''[b]Follow the instructions given below:[/b]\n
+                    1. Remove your glasses\n
+                    2. Stand 1 meter away from the monitor\n
+                    3. Keep your head straight\n
+                    4. Concentrate on the image and answer\n    using the microphone'''
+                markup: True
+                font_size: '25'
+                color: 0,0,0,1
+        BoxLayout:
+            padding: astigmatism.space_x, 230, astigmatism.space_x, 50
+            Button:
+                id: back
+                text: 'Back'
+                background_color: (0,.3,.3,1)
+                font_size: '20'
+                on_press:
+                    root.manager.transition.direction= "right"
+                    root.manager.current = 'select'
+            Button:
+                id: start
+                text: 'Start Test'
+                background_color: (0,.3,.3,1)
+                font_size: '20'
+                on_press: root.manager.current = '1astigma'
+
+<Astigma1Window>
+    id: astigma1
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: astigma1.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/astigmatism4.jpg'
+        Label:
+            text: 'Astigmatism Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 1
+        padding: astigma1.space_x+30, 50
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 1
+            padding: astigma1.space_x-300, 50
+            Label:
+                text: "[b][color=#063d3f]Image 1[/color][/b]"
+                markup: True
+                font_size: '30'
+                halign: 'center'
+                size_hint_y: None
+                height: 80
+            Label:
+                text: 
+                    '''Are all the radiating heavy black lines of the same intensity and thickness?
+                    If yes, then say "[b]Yes[/b]" in the microphone
+                    If no, then say "[b]No[/b]" in the microphone'''
+                markup: True
+                font_size: '20'
+                halign: 'center'
+                color: 0,0,0,1
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (230,230)
+                    pos: (480,240)
+                    source: './static/images/astigma1.jpg'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: audio_test
+                text: ''
+                markup: True
+                font_size: '20'
+                color: 0,0.3,0.4,1
+                bold: True
+                halign: 'center'
+            BoxLayout:
+                Button:
+                    id: speak
+                    text: 'Speak'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.recording()
+                    on_release: root.validate_speech()
+            BoxLayout:
+                Button:
+                    id: back
+                    text: 'Back'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press:
+                        root.empty_text()
+                        root.manager.transition.direction= "right"
+                        root.manager.current = 'astigma'
+                Button:
+                    id: next
+                    text: 'Next'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.empty_input()
+
+<Astigma2Window>
+    id: astigma2
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: astigma2.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/astigmatism4.jpg'
+        Label:
+            text: 'Astigmatism Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 2
+        padding: astigma2.space_x+30, 50
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+            padding: astigma2.space_x-300, 50
+            Label:
+                text: "[b][color=#063d3f]Image 2[/color][/b]"
+                markup: True
+                font_size: '30'
+                halign: 'center'
+                size_hint_y: None
+                height: 80
+            Label:
+                text: 
+                    '''Are all the concentric black circles of the same intensity and thickness?
+                    If yes, then say "[b]Yes[/b]" in the microphone
+                    If no, then say "[b]No[/b]" in the microphone'''
+                markup: True
+                font_size: '20'
+                halign: 'center'
+                color: 0,0,0,1
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (230,230)
+                    pos: (480,240)
+                    source: './static/images/astigma2.png'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: audio_test
+                text: ''
+                markup: True
+                font_size: '20'
+                color: 0,0.3,0.4,1
+                bold: True
+                halign: 'center'
+            BoxLayout:
+                Button:
+                    id: speak
+                    text: 'Speak'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.recording()
+                    on_release: root.validate_speech()
+            BoxLayout:
+                Button:
+                    id: back
+                    text: 'Back'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press:
+                        root.empty_text()
+                        root.manager.transition.direction= "right"
+                        root.manager.current = '1astigma'
+                Button:
+                    id: next
+                    text: 'Next'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.empty_input()
+
+<Astigma3Window>
+    id: astigma3
+    orientation: "vertical"
+    spacing: 20
+    space_x: self.size[0]/3
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    BoxLayout:
+        size_hint_y: None
+        height: 100
+        padding: astigma3.space_x, 660
+        canvas:
+            Color:
+                rgba: (0,.6,.6,1)
+            Ellipse:
+                size: self.size
+                pos: (0,605)
+                source: './static/images/astigmatism4.jpg'
+        Label:
+            text: 'Astigmatism Test'
+            font_size: '30'
+            bold: True
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 1
+        padding: astigma3.space_x+30, 50
+        BoxLayout:
+            orientation: 'vertical'
+            spacing: 5
+            padding: astigma3.space_x-300, 50
+            Label:
+                text: "[b][color=#063d3f]Image 3[/color][/b]"
+                markup: True
+                font_size: '30'
+                halign: 'center'
+                size_hint_y: None
+                height: 80
+            Label:
+                text: 
+                    '''Are all the black lines of the same intensity and thickness?
+                    If yes, then say "[b]Yes[/b]" in the microphone
+                    If no, then say "[b]No[/b]" in the microphone'''
+                markup: True
+                font_size: '20'
+                halign: 'center'
+                color: 0,0,0,1
+        Label:
+            canvas.before:
+                Color:
+                    rgba: (1,1,1,1)
+                Rectangle:
+                    size: (230,210)
+                    pos: (480,250)
+                    source: './static/images/astigma3.jpg'
+        BoxLayout:
+            orientation: 'vertical'
+            Label:
+                id: audio_test
+                text: ''
+                markup: True
+                font_size: '20'
+                color: 0,0.3,0.4,1
+                bold: True
+                halign: 'center'
+            BoxLayout:
+                Button:
+                    id: speak
+                    text: 'Speak'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.recording()
+                    on_release: root.validate_speech()
+            BoxLayout:
+                Button:
+                    id: back
+                    text: 'Back'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press:
+                        root.empty_text()
+                        root.manager.transition.direction= "right"
+                        root.manager.current = '2astigma'
+                Button:
+                    id: next
+                    text: 'Next'
+                    background_color: (0,.3,.3,1)
+                    font_size: '20'
+                    on_press: root.empty_input()
