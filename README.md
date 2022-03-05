@@ -1,5 +1,7 @@
 # e - VISION TEST:
 
+This is an app for testing the eye sight of a person using 3 main tests: Visual acuity, Astigmatism and Glass checker tests.
+
 Desktop application for Visual acuity test using machine learning.
 1.to create an audio visualization environment for testing eyesight using various charts.
 2.form will be displayed where the patient has to fill his personal information.
@@ -18,8 +20,6 @@ Desktop application for Visual acuity test using machine learning.
     2. Landolt C
     3. Random E
     4. Glass Checker
-
-This is an app for testing the eye sight of a person using 3 main tests: Visual acuity, Astigmatism and Glass checker tests
 
 Some screenshots of UI of this app is attached below:
 
